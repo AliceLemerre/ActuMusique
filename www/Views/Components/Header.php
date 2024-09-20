@@ -5,7 +5,8 @@
             <a class="navbar-li navbar-li-back" href="/dashboard"><button class="button button-sm">dashboard</button></a>
 
             <div> 
-                <button class="navbar-burger" data-target="#content"><span></span></button>
+                <button class="navbar-burger" data-target="#content"><span></span>
+                </button>
             </div>
         </div>
 
