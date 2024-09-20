@@ -1,0 +1,36 @@
+.side-column{
+    display: none;
+}
+
+
+@media screen and (min-width: 900px){
+    .side-column{
+        display: block;
+        width: 20%;
+        height: 100%;
+    }
+
+
+main{
+    position: relative; 
+}
+.side-column{
+    position: absolute;
+    right: 0;
+    top: 0;
+    border: solid 1px var(--black);
+    background: var(--light-beige);
+    font-family: $font1;
+    color: var(--black);
+    padding-left: rem(10);
+
+    &-content{
+        padding-left: rem(10);
+
+        p{
+            text-align: center;
+        }
+    }
+
+}
+}

@@ -1,0 +1,29 @@
+.banner{
+    aspect-ratio: 100/20;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: rem(20);
+
+
+    .card{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    div{
+        padding: rem(10);
+    }
+
+
+
+
+
+   
+}
+

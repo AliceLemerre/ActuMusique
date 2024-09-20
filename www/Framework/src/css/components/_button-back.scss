@@ -1,0 +1,122 @@
+.button-back {
+    background-color: var(--light-blue);
+    color: var(--dark);
+    display: inline-block;
+    padding: rem(18) rem(50);
+    padding: rem(18) rem(50);
+    border-radius: rem(50);
+    text-decoration: none !important;
+    cursor: pointer;
+    font-family: "NeueMachina";
+    font-weight: 1000;
+    font-size: rem(16);
+    line-height: rem(18);
+    font-weight: 1000;
+    font-size: rem(16);
+    line-height: rem(18);
+    border: none;
+    transition: all var(--transition-duration);
+    margin: rem(15);
+    &-lg {
+      padding: rem(24) rem(65);
+      padding: rem(24) rem(65);
+      font-size: rem(24);
+    }
+  
+    &-sm {
+      padding: rem(10) rem(30);
+      font-size: rem(12);
+    }
+  
+    &-purple {
+      background-color: var(--purple);
+      color: var(--white);
+    }
+  
+    &-orange {
+      background-color: var(--orange);
+    }
+  
+    &-lined {
+      background-color: var(--background-color);
+      border: rem(2) solid var(--orange);
+    }
+  
+    &-round {
+      width: rem(40);
+      height: rem(40);
+      padding: rem(10);
+  
+      &-sm {
+        width: rem(20);
+        height: rem(20);
+        padding: rem(5);
+        line-height: rem(0);
+      }
+    }
+  
+    &-icon-side {
+      display: flex;
+      padding: rem(0);
+      padding-left: rem(20);
+      align-items: center;
+  
+      img {
+        width: rem(20);
+        height: rem(20);
+        padding: rem(10);
+        margin-left: rem(20);
+        border-radius: rem(80);
+        background-color: $orange;
+      }
+    }
+  
+    &-rectangle {
+      background-color: var(--beige);
+      border: rem(1) solid var(--black);
+      border-radius: 0;
+    }
+  
+  }
+  
+  
+  .sun-guide {
+    display: inline-block;
+    margin: 0;
+  }
+  
+  .switched-guide {
+    width: rem(45);
+    aspect-ratio: 1/1;
+    padding: rem(10);
+    display: flex;
+    background-color: var(--orange);
+  
+    .moon-guide {
+      display: inline;
+      padding-left: rem(2);
+      margin: 0;
+    }
+  
+    .sun-guide {
+      display: none;
+    }
+  }
+  
+  
+  .icon-guide{
+    aspect-ratio: 1/1;
+    width: rem(15);
+  }
+  
+  .guide-icon{
+    width: rem(20);
+    aspect-ratio: 1/1;
+    margin: 0;
+  }
+  
+  .guide-icon-sm{
+    width: rem(10);
+    aspect-ratio: 1/1;
+    margin: 0;
+  }

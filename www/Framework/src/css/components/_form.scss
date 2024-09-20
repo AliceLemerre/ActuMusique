@@ -1,0 +1,26 @@
+.card-form{
+    display: flex;
+    flex-direction: column;
+    padding: rem(30);
+    position: relative;
+
+    form{
+        padding: rem(30);
+
+
+    }
+ 
+    .input-form{
+        margin: rem(5) 0 rem(13) 0;
+    }
+
+    button{
+    margin-left: auto;
+    }
+
+    &-stay-logged{
+        margin-right: auto;
+
+    }
+   
+}

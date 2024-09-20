@@ -1,0 +1,46 @@
+/* ... (previous styles remain the same) ... */
+
+.nav-front-top {
+    border-bottom: rem(1) solid var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: rem(15) rem(20);
+    min-height: rem(80); /* Increased minimum height */
+}
+
+.nav-front-logo,
+.nav-front-dashboard {
+    flex-shrink: 0; /* Prevent logo and dashboard button from shrinking */
+}
+
+.nav-front-logo img {
+    max-height: rem(50); /* Adjust based on your logo size */
+    width: auto;
+}
+
+.nav-front-dashboard {
+    padding: rem(8) rem(15);
+    white-space: nowrap; /* Prevent button text from wrapping */
+}
+
+/* ... (rest of the styles remain the same) ... */
+
+@media screen and (min-width: 768px) {
+    /* ... (previous desktop styles remain the same) ... */
+
+    .nav-front-top {
+        padding: rem(20) rem(30);
+        min-height: rem(100); /* Slightly larger on desktop if needed */
+    }
+
+    .nav-front-logo img {
+        max-height: rem(60); /* Slightly larger logo on desktop if needed */
+    }
+
+    .nav-front-dashboard {
+        padding: rem(10) rem(20);
+    }
+
+    /* ... (rest of the desktop styles remain the same) ... */
+}

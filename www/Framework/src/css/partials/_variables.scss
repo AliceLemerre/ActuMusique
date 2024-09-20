@@ -1,0 +1,86 @@
+/* couleurs */
+
+$white: #fff;
+$black : #000;
+$grey : #6C757D;
+$light-grey: #f8f9fa;
+$blue : #0d6efd;
+$red : #dc3545;
+$pink: #F96D98;
+$orange: #FBA13D;
+$yellow: #F0D850;
+$beige: #FFE5CC;
+$light-beige: #FFF3E6;
+
+
+$light: #fff;
+$dark: #20232A;
+$cream: #fff5ec;
+$dark-blue: #0F223F;
+$purple: #7a72bd;
+
+$white-dark-mode: #202020;
+$black-dark-mode: #feeeee;
+$cream-dark-mode: #8a8a8a;
+$light-dark-mode: #2e2c2c;
+$dark-dark-mode: #5e5e5e;
+
+
+/* variables css */
+:root{
+    --white: #{$white};
+    --black: #{$black};
+    --beige: #{$beige};
+    --light-grey: #{$light-grey};
+    --light-beige: #{$light-beige};
+    --beige-darker: #{darken($grey, 10%)};
+    --blue: #{$blue};
+    --blue-darker: #{darken($blue, 10%)};
+    --red: #{$red};
+    --red-darker: #{darken($red, 10%)};
+    --pink: #{$pink};
+    --pink-darker: #{darken($pink, 10%)};
+    --orange: #{$orange};
+    --orange-darker: #{darken($orange, 10%)};
+    --yellow: #{$yellow};
+    --yellow-darker: #{darken($yellow, 10%)};
+
+    --light: #{$light};
+    --dark: #{$dark};
+    --cream: #{$cream};
+    --dark-blue: #{$dark-blue};
+    --purple: #{$purple};
+
+
+
+    --main-font: #{$font1};
+    --title-font: #{font2};
+
+    --main-radius: rem(6);
+
+    --transition-duration: 0.1s;
+}
+
+
+
+
+body.light {
+  --white: #{$white};
+  --black: #{$black};
+  --grey: #{$grey};
+  --cream: #{$cream};
+  --dark-blue: #{$dark-blue};
+  --purple: #{$purple};
+  --orange: #{$orange};
+}
+
+body.dark {
+  --white: #{$white-dark-mode};
+  --black: #{$black-dark-mode};
+  --light: #{$dark-dark-mode};
+  --dark: #{$light-dark-mode};
+  --cream: #{$cream-dark-mode};
+  --dark-blue: #{$dark-blue};
+  --purple: #{$purple};
+  --orange: #{$orange};
+}

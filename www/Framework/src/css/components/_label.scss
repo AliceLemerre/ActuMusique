@@ -1,0 +1,19 @@
+.label {
+    display: block;
+    text-align: center; 
+    font-size: rem(40); 
+    font-family: 'Anton';
+    width: 50%;
+    word-wrap: break-word;
+   
+
+  @media only screen and (max-width: 768px) {
+        width: 70%; 
+  }
+
+  @media only screen and (max-width: 1024px) {
+    width: 90%; 
+    font-size: rem(32);
+  }
+
+}

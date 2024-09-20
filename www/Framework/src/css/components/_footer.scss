@@ -1,0 +1,39 @@
+.footer{
+
+    position: absolute;
+    bottom: 0;
+
+    &-links{
+        display: flex;
+        flex-direction: column;
+        text-align:center;
+        gap :rem(25);
+        list-style: none;
+    }
+
+    font-family: $font1;
+    background-color: var(--cream);
+    padding: rem(20) 0;
+    width: 100%;
+    border-top: rem(0.5) solid var(--black);
+
+    a{
+        color: var(--black);
+    }
+
+    &-back{
+        background-color: var(--dark-blue);
+
+        a, li{
+            color: var(--white);
+        }
+    }
+}
+
+
+@media only screen and (min-width: 768px) {
+    .footer-links{
+        flex-direction: row;
+        justify-content: center;
+    }
+  }

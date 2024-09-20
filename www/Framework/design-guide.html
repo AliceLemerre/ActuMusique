@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>design guide</title>
+    <link rel="stylesheet" type="text/css" href="dist/css/main.css">
+    <style> body > section {margin-bottom: 5rem;} .content{background-color: rgb(255, 179, 214); padding: 0.75rem; margin: 1rem;}</style>
+</head>
+
+
+<body class="grid">
+
+
+
+    <section>
+        <h1>.banner</h1>
+        <div class="banner banner-text" style="background-image: url('./assets/images/header-default1.png')">
+           <div class="card card-banner">
+             <p>Avec Actumusique, créez un site pour tenir les fans à jour sur l'actualité de votre groupe de musique préféré, enregistrer ses prochains évènements, se renseigner sur le groupe et ses œuvres, s'organiser pour se rencontrer aux concerts.</p>
+             <a href="#" class="button button-primary">découvrir l'artiste</a>
+            </div>
+        </div> 
+    </section>
+
+    
+
+<main>
+    <h1>.button</h1>
+    <p>
+        <button class="button button-lg button-primary">button</button>   
+        <button class="button button-nav-active">button</button>   
+        <button class="button button-sm button-primary">button</button>   
+    </p>
+
+    <ul class="interactions-list">
+        <li><a href="" class="interaction interaction-share"><img src="./assets/images/share-icon.svg" alt=""></a></li>
+        <li><a href="" class="interaction interaction-like"><img src="./assets/images/heart-icon.svg" alt=""></a></li>
+        <li><a href="" class="interaction interaction-save"><img src="./assets/images/save-icon.svg" alt=""></a></li>
+    </ul>
+
+    <div class="row">
+    <article class="card card-article">
+        <header class="card-header card-article-header">
+            <h1>Titre de l'article</h1>
+            <p class="card-header-date-posted">date posted</p>
+        </header>
+        <div class="card-content card-article-content">
+            <div class="card-image">
+                <img src="assets/images/img-default.png" alt="image placeholder article">
+            </div>
+            <div class="card-infos card-article-infos"> 
+                <p>Ceci est un article, écrivez y ce que vous voulez. Actualité, billet d’humeur, résumé de
+                    concert... à vous de jouer !</p>
+                <a href="#" class="button button-primary">lire la suite</a>
+            </div>
+        </div>
+
+        <footer class="card-footer card-footer-article">
+            <a href="#">xx commentaires</a>
+            <p>par <a href="#">utilisateur54</a></p>
+            <ul class="interactions-list">
+                <li><a href="" class="interaction interaction-share"><img src="./assets/images/share-icon.svg" alt=""></a></li>
+                <li><a href="" class="interaction interaction-like"><img src="./assets/images/heart-icon.svg" alt=""></a></li>
+                <li><a href="" class="interaction interaction-save"><img src="./assets/images/save-icon.svg" alt=""></a></li>
+            </ul>
+        </footer>
+    </article>
+</div>
+
+
+    <article class="card card-event">
+        <header class="card-header card-event-header">
+            <h1>Titre de l'évènement</h1>
+            <p>15 janvier 2023 - La Vilette - Paris (75)</p>
+        </header>
+
+        <div class="card-content card-article-content">
+            <div class="card-image" >
+                <img src="./assets/images/img-default.png" alt="image placeholder article">
+            </div>
+            <div class="card-infos card-event-infos">
+                <p>Ceci est un post d’évènement. Publiez l’intitulé, la date, le lieu et permettez aux utilisateurs
+                    de l’enregistrer dans leur calendrier et de s’organiser pour...</p>
+                <a href="#" class="button button-primary">lire la suite</a>
+            </div>
+        </div>
+
+        <footer class="card-footer card-event-footer">
+            <p>date posted</p>
+            <a class="button button-sm button-add-calendar" href="#">ajouter à mon calendrier</a>
+            <ul class="interactions-list">
+                <li><a href="" class="interaction interaction-share"><img src="./assets/images/share-icon.svg" alt=""></a></li>
+                <li><a href="" class="interaction interaction-like"><img src="./assets/images/heart-icon.svg" alt=""></a></li>
+                <li><a href="" class="interaction interaction-save"><img src="./assets/images/save-icon.svg" alt=""></a></li>
+            </ul>
+        </footer>
+    </article>
+
+
+
+
+
+<section>
+    <h1>.grid</h1>
+    <div class="grid">
+        <div class="row">
+            <div class="col-2"><div class="content">col 2</div></div>
+            <div class="col-2"><div class="content">col 2</div></div>
+            <div class="col-8"><div class="content">col 8</div></div>
+        </div>
+
+        <div class="row">
+            <div class="col-12"><div class="content">col 1</div></div>
+        </div>
+
+        <div class="row">
+            <div class="col-4"><div class="content">col 4</div></div>
+            <div class="col-4"><div class="content">col 4</div></div>
+            <div class="col-4"><div class="content">col 4</div></div>
+        </div>
+
+        <div class="row">
+            <div class="col-6"><div class="content">col 6</div></div>
+            <div class="col-6"><div class="content">col 6</div></div>
+        </div>
+
+        <div class="row">
+            <div class="col-3"><div class="content">col 3</div></div>
+            <div class="col-3"><div class="content">col 3</div></div>
+            <div class="col-3"><div class="content">col 3</div></div>
+            <div class="col-3"><div class="content">col 3</div></div>
+
+        </div>
+
+    </div>
+</section>
+
+
+<section class="card card-comments" >
+    <header class="card-header">
+      <div>  <p>utilisateur 17</p></div>
+        <p class="card-header-date-posted">26/02/2023 à 9h15</p>
+    </header>
+    <div class="card-comments-content">
+        <p>Bonjour c’est vraiment super, cet article est génial et très instructif</p>
+        <a href="">signaler le commentaire</a>
+    </div>
+
+
+</section>
+
+
+<section class="card" >
+    <header class="card-header">
+      <div>  <h1>Connexion</h1></div>
+    </header>
+    <form action="POST" class="card-form">
+        <label for="user-id">
+            pseudonyme ou adresse mail :        </label>
+            <input class="" type="text" id="user-id" name="user-id" />
+        <label for="password">      
+            mot de passe :  </label> <input class=" type="password" id="user-password" name="user-password" />
+            <a href="" class="forgot-password">mot de passe oublié ?</a>
+        <div class="card-form-stay-logged">
+            <input type="checkbox" id="stay-logged-in" name="stay-logged-in" />
+            <label for="stay-logged-in">rester connecté</label>
+        </div>
+            <button class="button" type="submit">Se connecter</button>        
+    </form>
+</section>
+
+<section class="card" >
+    <header class="card-header">
+      <div>  <h1>Inscription</h1></div>
+    </header>
+    <form action="POST" class="card-form">
+        <label for="user-id">
+            pseudonyme :        </label>
+            <input class="" type="text" id="user-id" name="user-id" />
+        
+        <label for="user-id">
+            adresse mail :        </label>
+            <input class="" type="email" id="user-email" name="user-email" />
+
+        <label for="password">      
+            mot de passe :  </label> 
+            <input class="user-password" type="password" id="user-password" name="user-password" />
+            
+            <label for="password">      
+                confirmation du mot de passe :  </label> 
+                <input class="user-password" type="password" id="user-password-confirm" name="user-password-confirm" />
+            
+                
+            <a href="" class="forgot-password">mot de passe oublié ?</a>
+        <div class="card-form-stay-logged">
+            <input type="checkbox" id="stay-logged-in" name="stay-logged-in" />
+            <label for="stay-logged-in">rester connecté</label>
+        </div>
+            <button class="button" type="submit">Se connecter</button>        
+    </form>
+</section>
+
+
+
+<section class="card" >
+    <header class="card-header">
+      <div>  <h1>Réinitialiser le mot de passe</h1></div>
+    </header>
+    <form action="POST" class="card-form">
+       
+        <label for="user-id">
+            adresse mail :        </label>
+            <input class="" type="email" id="user-email" name="user-email" />
+
+           
+            <a href="" class="forgot-password">se connecter ?</a>
+      
+            <button class="button" type="submit">Renvoyer un mot de passe</button>        
+    </form>
+</section>
+
+
+<section class="card card-album" >
+    <header class="card-header card-header-album">
+        <h1>Titre de l'album</h1>
+    </header>
+    <div class="card-content card-content-album">
+        <div class="card-image card-image-album">
+            <img src="./assets/images/img-default.png" alt="image placeholder album">
+            <p>2015 - 12 titres - 1h38</p>
+
+        </div>
+    
+        <div class="card-infos card-album-infos"> 
+            <ul>
+                <li class="card-album-infos-titles">titre</li>
+                <li class="card-album-infos-titles">titre</li>
+                <li class="card-album-infos-titles">titre</li>
+                <li class="card-album-infos-titles">titre</li>
+                <li class="card-album-infos-titles">titre</li>
+                <li class="card-album-infos-titles">titre</li>
+                <li class="card-album-infos-titles">titre</li>
+                <li class="card-album-infos-titles">titre</li>
+            </ul>
+        </div> 
+    </div>
+
+
+</section>
+
+<section class="card card-event-link">
+<a class="card-event-link-wrapper" href="">
+    <header class="card-header card-header-event-link">
+    <h1>Nom de l'évènement</h1>
+
+    <div class="card-content card-content-event-link">
+        <h2>date et lieu de l'évènement</h2>
+    </div>
+
+</header>
+</section>
+</a>
+
+<section class="card card-section-tabs" >
+
+
+
+
+<main>
+  <div class="tabs">
+    <input class="radiotab" name="tabs" tabindex="1" type="radio" id="tabone" checked="checked">
+    <label class="label" for="tabone">Artiste 1</label>
+    <div class="panel" tabindex="1">
+      <h2>Tab 1</h2>
+      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+    </div>
+    <input class="radiotab" tabindex="1" name="tabs" type="radio" id="tabtwo">
+    <label class="label" for="tabtwo">Artiste 2</label>
+    <div class="panel" tabindex="1">
+      <h2>Tab 2</h2>
+      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+    </div>
+    <input class="radiotab" tabindex="1" name="tabs" type="radio" id="tabthree">
+    <label class="label" for="tabthree" >Artiste 3</label>
+    <div class="panel" tabindex="1">
+      <h2>Tab 3</h2>
+      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+      
+      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+    </div>
+  </div>
+  
+</main>
+
+
+</section>
+
+
+<header>
+    <nav class="nav">
+        <a class="logo" href="./assets/images/Actumusique.png"></a>
+        <ul>
+            <li> <a href="">accueil</a></li>
+            <li><a href="">artiste</a></li>
+            <li><a href="">évènements</a></li>
+            <li><a href="">article</a></li>
+            <li><a href="">connexion</a></li>
+            <li class="button button-lg button-primary"><a href="">inscription</a></li>
+        </ul>
+    </nav>
+    
+    <div class="banner banner-text" style="background-image: url('/actuMusique/framework/assets/images/header-default1.png')">
+        <div class="card card-banner">
+          <p>Avec Actumusique, créez un site pour tenir les fans à jour sur l'actualité de votre groupe de musique préféré, enregistrer ses prochains évènements, se renseigner sur le groupe et ses œuvres, s'organiser pour se rencontrer aux concerts.</p>
+          <a href="#" class="button button-primary">découvrir l'artiste</a>
+         </div>
+     </div> 
+
+</header>
+
+    <h1>Dernières publications</h1>
+
+    
+
+    
+        <aside class="side-column" >
+            <div class="side-column-content">
+            <h3>Article populaires</h3>
+            <ul>
+                <li>Titre de l’article</li>
+                <li>Titre de l’article</li>
+                <li>Titre de l’article</li>
+            </ul>
+
+            <h3>Prochains évènements</h3>
+            <ul>
+                <li>Prochain évènement</li>
+                <li>Prochain évènement</li>
+                <li>Prochain évènement</li>
+            </ul>
+
+            <p>XX utilisateurs connectés</p>
+        </div>
+
+        </aside>
+
+
+        <section class="card card-artiste">
+
+            <div class="card-artiste-biographie card-section-tabs">
+
+                <header class="card-header">
+                    <h1>Biographie</h1>
+                </header>
+                  <div class="card-artiste-biographie-content">
+
+                <div class="card-image">
+                    <img src="./assets/images/img-default.png" alt="image placeholder article">
+                </div>
+
+
+                <div class="tabs">
+                    <input class="radiotab" name="tabs" tabindex="1" type="radio" id="tabone" checked="checked">
+                    <label class="label" for="tabone">Artiste 1</label>
+                    <div class="panel" tabindex="1">
+                      <h2>Tab 1</h2>
+                      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                    </div>
+                    <input class="radiotab" tabindex="1" name="tabs" type="radio" id="tabtwo">
+                    <label class="label" for="tabtwo">Artiste 2</label>
+                    <div class="panel" tabindex="1">
+                      <h2>Tab 2</h2>
+                      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+                    </div>
+                    <input class="radiotab" tabindex="1" name="tabs" type="radio" id="tabthree">
+                    <label class="label" for="tabthree" >Artiste 3</label>
+                    <div class="panel" tabindex="1">
+                      <h2>Tab 3</h2>
+                      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                      
+                      <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                    </div>
+                  </div>
+                  </div>
+                
+            </div>
+
+
+        </section>
+</main>
+</body>
+</html>

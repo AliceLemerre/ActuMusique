@@ -1,0 +1,90 @@
+.button{
+    --bg-color: var(--light-beige);
+    --bg-hover-color: var(--light-beige);
+ padding: rem(8) rem(25);
+ border-radius: rem(60);
+ text-decoration: none;
+ cursor: pointer;
+ font-family: $font1;
+ font-weight: 400;
+ font-size: rem(16);
+ line-height: rem(18);
+ border: rem(2) solid #555;
+ background-color: var(--bg-color);
+ color: var(--black);
+ transition: all var(--transition-duration);
+
+&:hover, &:focus{
+   border: rem(2) solid var(--black);
+}
+
+ &-sm{
+    padding: rem(2) rem(10);
+    font-size: rem(11);
+    line-height: rem(18);
+ }
+
+ &-nav-active{
+   --bg-color: var(--orange);
+   border: rem(2) solid var(--orange);
+}
+
+&-submit{
+   background-color: var(--light-beige);
+}
+
+&-open-post{
+   margin: rem(20) 0 rem(10) 0;
+   
+   a{
+      padding: rem(5) rem(18);
+   }
+
+}
+
+&-round {
+   width: rem(45);
+   aspect-ratio: 1/1;
+   padding: rem(10);
+   display: flex;
+}
+
+.moon {
+   display: none;
+ }
+
+
+ .sun {
+   display: inline-block;
+ }
+
+ 
+ &-icon-side {
+   display: flex;
+   padding: rem(0);
+   padding-left: rem(20);
+   align-items: center;
+   color: var(--black);
+
+
+.switched {
+   width: rem(45);
+   aspect-ratio: 1/1;
+   padding: rem(10);
+   display: flex;
+   background-color: var(--orange);
+ 
+   .moon {
+     display: inline;
+     padding-left: rem(2);
+   }
+ 
+   .sun {
+     display: none;
+   }
+ }
+
+ 
+}
+
+}

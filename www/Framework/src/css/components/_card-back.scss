@@ -1,0 +1,196 @@
+
+.card-back{
+    font-family: $font1;
+    background-color: var(--white);
+    border-radius: rem(15);
+    box-shadow: rem(4) rem(6) rem(22) rem(2) rgba(53, 0, 0, 0.21);
+    color: var(--black);
+    padding: rem(10);
+    width: rem(300);
+    margin-bottom: rem(30);
+
+    p{
+        font-family: $font1;
+    }
+
+    &-comments p{
+        text-align: center;
+    }
+
+
+    .undertitle{
+font-size: 1.5rem;
+font-family: $font1;
+}
+
+
+    ul{
+        list-style: none;
+    }
+
+    a{
+        text-decoration: none;
+        color: var(--black);
+    }
+
+ 
+    //CARD MENU
+        &-list{
+
+        a{
+            font-family: $font1;
+        }
+        
+        &-item{ 
+            font-family: $font1;
+            display: flex;
+            justify-content: space-between;
+            border-top: rem(0.5) solid var(--black);
+            padding: rem(10) rem(0);
+
+          
+            &-buttons{
+                display: flex;
+                align-items: center;
+                gap: rem(15);
+            }
+
+            .arrows{
+                display: flex;
+                flex-direction: column;
+                gap: rem(5);
+            }
+
+        }
+    }
+
+    .graph{
+        width: 90%;
+    }
+
+        //CARD COMMENTAIRES
+    &-comment-stats{
+        border-top: rem(0.5) solid var(--black);
+        a{
+            text-decoration: underline;
+        }
+    }
+
+    //CARD DROPDOWN TYPOGRAPHIES
+    &-dropdown{
+        display: flex;
+        flex-direction: column;
+        font-family: $font1;
+
+
+        select{
+            max-width: 50%;
+            background-color: var(--white);
+            border: rem(0.25) solid var(--black);
+            border-radius: rem(3);
+            margin-top: rem(10);
+            color: var(--black);
+        
+        }
+    }
+
+    //BOUTONS VALIDER, SUPPRIMER, ACCEPTER
+    &-interaction{
+        display: flex;
+        flex-direction:row-reverse;
+        gap: rem(20);
+    }
+
+
+    //CARD PALETTES DE COULEUR
+
+    &-radio-color{
+        display:flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: rem(30);
+        text-align: center;
+        font-family: $font1;
+
+    }
+
+    //VARIABLES COULEURS
+    --color-1: var(--light-blue);
+    --color-2: var(--blue);
+    --color-3: var(--light-blue);
+    --color-4: var(--black);
+    --color-5: var(--beige);
+    --color-6: var(--dark);
+    --color-7: var(--light);
+
+
+    --color-1-theme-2: var(--pink);
+    --color-2-theme-2: var(--yellow);
+    --color-3-theme-2: var(--red);
+    --color-4-theme-2: var(--black);
+    --color-5-theme-2: var(--white);
+    --color-6-theme-2: var(--dark);
+    --color-7-theme-2: var(--light);
+
+
+    &-radio-color-swatch{
+        width: rem(80);
+        height: rem(80);
+        box-sizing: border-box;
+        background-color: var(--light-blue);
+        border-radius: rem(50);
+        line-height: rem(80);
+        border: rem(1) solid var(--black);
+
+        &-1{
+            background-color: var(--color-1);
+        }
+        &-2{
+            background-color: var(--color-2);
+        }
+        &-3{
+           background-color:  var(--color-3);
+        }
+        &-4{
+            background-color: var(--color-4);
+            color: var(--white);
+
+        }
+        &-5{
+            background-color: var(--color-5);
+            color: var(--black);
+        }
+        &-6{
+            background-color: var(--color-6);
+            color: white;
+        }
+        &-7{
+            background-color: var(--color-7);
+            color: var(--dark);
+
+        }
+
+    }
+}
+
+
+
+// @media only screen and (min-width: 768px) {
+//     .card{
+//         width: rem(400);
+//     }
+//   }
+
+//  @media only screen and (min-width: 1024px) {
+//     .card{
+//         width: 100%;
+
+//     &-stats{
+//         width: rem(400);
+//     }
+// }
+
+//  }
+
+
+//}

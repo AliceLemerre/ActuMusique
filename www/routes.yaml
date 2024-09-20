@@ -1,0 +1,68 @@
+/:
+  controller: Main
+  action: home
+
+/events:
+  controller: Main
+  action: events
+
+/articles:
+  controller: Main
+  action: articles
+
+/login:
+  controller: Security
+  action: login
+
+/register:
+  controller: Security
+  action: register
+
+/logout:
+  controller: Security
+  action: logout
+
+/dashboard:
+  controller: Dashboard
+  action: index
+
+
+/dashboard-posts:
+  controller: Dashboard
+  action: posts
+
+/dashboard-comments:
+  controller: Dashboard
+  action: comments
+
+/dashboard-accounts:
+  controller: Dashboard
+  action: accounts
+
+/dashboard-design:
+  controller: Dashboard
+  action: design
+
+/viewpost:
+  controller: Post
+  action: viewpage
+
+/createpost:
+  controller: Post
+  action: createpost
+
+/updatepost:
+  controller: Post
+  action: updatepage
+
+/deletepost:
+  controller: Post
+  action: deletepage
+
+/createcomment:
+  controller: Comment
+  action: createComment
+
+/deletecomment:
+  controller: Comment
+  action: deletecomment

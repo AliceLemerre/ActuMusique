@@ -1,0 +1,88 @@
+.card-section-tabs{
+* {
+box-sizing: border-box;
+}
+
+*:focus, input:focus + label {
+outline: none;
+}
+
+body {
+padding: rem(30) rem(20);
+background: var(--light-beige);
+color: var(--black);
+}
+
+main {
+margin: auto;
+}
+
+
+
+.tabs {
+display: flex;
+flex-wrap: wrap;
+margin: 0 auto rem(10);
+}
+
+.radiotab {
+position: absolute;
+opacity: 0;
+}
+
+.label {
+width: 100%;
+padding: rem(9);
+background: var(--light-beige);
+cursor: pointer;
+transition: background .3s, color .3s;
+border: none;
+text-align: center;
+}
+
+.label:hover {
+background: var(--beige);
+}
+
+.label:active {
+background: var(--beige);  
+}
+
+.radiotab:checked + .label {
+
+border: solid 1px var(--black);
+border-bottom: none;
+}
+
+.radiotab:checked + .label:first-of-type{
+  border-left: none;
+}
+
+.radiotab:checked + .label:last-of-type{
+  border-right: none;
+}
+
+.panel {
+display: none;
+padding: rem(10) rem(20) rem(20);
+width: 100%;
+border-bottom: solid 1px var(--black);
+}
+
+.radiotab:checked + .label + .panel {
+display: block;
+}
+
+@media (min-width: 600px) {
+.panel {
+order: 99;
+}
+
+.label {
+width: 33.33%;
+border-bottom: solid 1px var(--black);
+}
+
+}
+
+}

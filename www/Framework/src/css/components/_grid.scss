@@ -1,0 +1,39 @@
+/*.grid{
+    overflow: hidden;
+
+
+.row{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 $gutter/2;
+
+    .col-6{
+        width: 50%;
+        padding: 0 $gutter/2;
+       
+
+    }
+}
+}*/
+
+$cols: 12;
+
+.grid{
+    background-color: var(--beige);
+
+    &-back{
+            background-color: var(--light-grey);
+    }
+
+    
+    @for $i from 1 through $cols{
+        .col-#{$i}{
+            width: calc(100% / $cols * $i);
+        }
+    }
+
+    .row{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
