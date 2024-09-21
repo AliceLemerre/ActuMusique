@@ -13,69 +13,84 @@ use App\Core\DB;
 class Post extends Security
 {
     public function createPost(): void
-{
-    $createPost = new PostInsert();
-    $configPost = $createPost->getConfig();
-    $errors = [];
+    {
+        $security = new Security();
+        // $isAdmin = $security->checkAuthentification('/');
+        // if ($isAdmin == "admin") {
 
-    if ($_SERVER['REQUEST_METHOD'] == $configPost['config']['method']) {
-        $verificator = new Verificator();
-        if ($verificator->checkFormWithFiles($configPost, $_POST, $_FILES, $errors)) {
-            $post = new PostModel();
-            
-            // Validate user ID
-            $userId = $_SESSION['userID'] ?? null;
-            if (!$userId) {
-                $errors[] = "User ID not found in session. Please log in.";
-            } else {
-                $userModel = new UserModel();
-                $user = $userModel->getOneBy(['id' => $userId]);
-                if (!$user) {
-                    $errors[] = "Invalid user ID. User does not exist.";
+        $createPost = new PostInsert();
+        $configPost = $createPost->getConfig();
+        $errors = [];
+
+        if ($_SERVER['REQUEST_METHOD'] == $configPost['config']['method']) {
+            $verificator = new Verificator();
+            if ($verificator->checkFormWithFiles($configPost, $_POST, $_FILES, $errors)) {
+                $post = new PostModel();
+                
+                $userId = $_SESSION['userID'] ?? null;
+                if (!$userId) {
+                    $errors[] = "User ID not found in session. Please log in.";
                 } else {
-                    $post->setUserId($userId);
+                    $userModel = new UserModel();
+                    $user = $userModel->getOneBy(['id' => $userId]);
+                    if (!$user) {
+                        $errors[] = "Invalid user ID. User does not exist.";
+                    } else {
+                        $post->setUserId($userId);
+                    }
                 }
-            }
 
-            if (empty($errors)) {
-                error_log("Form data: " . print_r($_POST, true));
-                
-                $post->setCategory((int)$_POST['post-category']);  // Convert to int
-                $post->setTitle($_POST['title']);
-                $post->setContent($_POST['post-content']);
-
-                if ($_POST['post-category'] == '2') {  // Assuming 2 is the category ID for 'Évènement'
-                    $post->setCity($_POST['event-city'] ?? '');
-                    $post->setPlace($_POST['event-place'] ?? '');
-                    $post->setDate($_POST['event-date'] ?? date('Y-m-d'));
-                }
-                
-                if (isset($_FILES['post-image']) && $_FILES['post-image']['error'] == 0) {
-                }
-                $post->setViews(0);
-                $post->setLikes(0);
-                
                 if (empty($errors)) {
-                    try {
-                        $post->save();
-                        error_log("Post saved successfully. Post ID: " . $post->getId());
-                        header("Location: /");
-                        exit();
-                    } catch (\Exception $e) {
-                        error_log("Exception when saving post: " . $e->getMessage());
-                        $errors[] = "Failed to save the post: " . $e->getMessage();
+                    $post->setCategory($_POST['post-category']);
+                    $post->setTitle($_POST['title']);
+                    $post->setContent($_POST['post-content']);
+
+                    if ($_POST['post-category'] == 'Évènement') {
+                        $post->setCity($_POST['event-city'] ?? '');
+                        $post->setPlace($_POST['event-place'] ?? '');
+                        $post->setDate($_POST['event-date'] ?? date('Y-m-d'));
+                    }
+                    
+                    if (isset($_FILES['post-image']) && $_FILES['post-image']['error'] == 0) {
+                        $uploadDirectory = "uploads/";
+                        $fileName = uniqid() . '_' . basename($_FILES['post-image']['name']);
+                        $targetFilePath = $uploadDirectory . $fileName;
+                        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+                        $allowedTypes = array("jpg", "jpeg", "png", "gif", "webp");
+                        
+                        if (in_array(strtolower($fileType), $allowedTypes)) {
+                            if (move_uploaded_file($_FILES["post-image"]["tmp_name"], $targetFilePath)) {
+                                $post->setImage($fileName);
+                            } else {
+                                $errors[] = "Erreur pendant l'upload de l'image.";
+                            }
+                        } else {
+                            $errors[] = "Formats autorisés : JPG, JPEG, PNG, GIF, et WEBP.";
+                        }
+                    }
+                    
+                    if (empty($errors)) {
+                        try {
+                            $post->save();
+                            header("Location: /");
+                            exit();
+                        } catch (\Exception $e) {
+                            $errors[] = "échec de récupération du post: " . $e->getMessage();
+                        }
                     }
                 }
             }
-        } else {
-            error_log("Form validation failed. Errors: " . print_r($errors, true));
         }
+        
+        $myView = new View("Post/create-post", "front");
+        $myView->assign("createPost", $configPost);
+        $myView->assign("errorsForm", $errors);
+        
+        // } else {
+        //     header('location:/login');
+        //     exit();
+        // }
     }
-    
-    $myView = new View("Post/createpost", "front");
-    $myView->assign("createPost", $configPost);
-    $myView->assign("errorsForm", $errors);
-}
 
     public function listPosts(): void
     {
