@@ -9,4 +9,11 @@ $this->includeComponent("event", []);
 $this->includeComponent("article", []);
 ?>
 
+  <div>
+  <p>Sauvegardez l'archive de votre site : exportez vos fichiers et la base de données </p>
+  <form action="create_backup.php" method="post">
+    <button type="submit">télécharger l'archive</button>
+</form>
+</div>
+
 </section>
