@@ -66,3 +66,15 @@
 /deletecomment:
   controller: Comment
   action: deletecomment
+
+  /verify:
+  controller: Security
+  action: verify
+
+/changepassword:
+  controller: User
+  action: changepassword
+
+/resetpassword:
+  controller: User
+  action: resetpassword

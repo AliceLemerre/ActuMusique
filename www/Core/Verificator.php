@@ -12,19 +12,19 @@ class Verificator
         } else {
             foreach ($config['input'] as $name => $input) {
                 if ($input["name"] == "image" && !self::checkImageProject($file['image']['full_path'])) {
-                    $errors[] = "Data image incorrect";
+                    $errors[] = "image invalide";
                 }
                 if ($input["name"] == "title" && !self::checkProjectTitle($data['title'])) {
-                    $errors[] = "Invalid title";
+                    $errors[] = "titre invalide";
                 }
                 if ($input["name"] == "category" && !self::checkProjectCategory($data['category'])) {
-                    $errors[] = "Invalid category";
+                    $errors[] = "caégorie invalide";
                 }
                 if ($input["name"] == "description" && !self::checkPageDescription($data['description'])) {
-                    $errors[] = "Invalid description";
+                    $errors[] = "description invalide";
                 }
                 if ($input["name"] == "content" && !self::checkPageDescription($data['description'])) {
-                    $errors[] = "Invalid content";
+                    $errors[] = "contenu invalide";
                 }
             }
         }
@@ -45,13 +45,13 @@ class Verificator
                 if($input["type"]=="email" && !self::checkEmail($data[$name])){
                     $errors[]="Email incorrect";
                 }
-                if ($input["name"] == "username" && !self::checkUsername($data[$name], $config['input'][$name])) {
+                if (isset($input["name"]) && $input["name"] == "username" && !self::checkUsername($data[$name], $config['input'][$name])) {
                     $errors[] = "Nom d'utilisateur incorrect";
                 }
                 if ($input["type"] == "password" && !self::checkPassword($data[$name])) {
                     $errors[] = "Mot de passe incorrect";
                 }
-                if ($input["name"] == "passwordconfirm" && !self::checkPasswordConfirmation($data['password'], $data[$name])) {
+                if (isset($input["name"]) && $input["name"] == "passwordconfirm" && !self::checkPasswordConfirmation($data['password'], $data[$name])) {
                     $errors[] = "Les mots de passe ne correspondent pas";
                 }
             }

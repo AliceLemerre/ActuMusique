@@ -1,4 +1,4 @@
-<section class="card" >
+<section class="card card-form-section" >
 
     <header class="card-header">
         <div>  <h1>Vous êtes déconnecté</h1></div>

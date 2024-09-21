@@ -15,9 +15,17 @@ class Post extends DB
     protected string $city = "";
     protected string $content = "";
     protected string $image = "";
-    protected int $userId = 0; 
+    protected int $userid = 0; 
+    protected int $views = 0;
+    protected int $likes = 0;
     protected \DateTime $createdAt;
     protected \DateTime $updatedAt;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setTable("esgi_post"); 
+    }
 
     public function getId(): int
     {
@@ -44,7 +52,7 @@ class Post extends DB
         return $this->category;
     }
 
-    public function setCategory(string $category): void
+    public function setCategory(int $category): void
     {
         $this->title = $category;
     }
@@ -101,12 +109,12 @@ class Post extends DB
 
     public function setUserId(int $userId): void
     {
-        $this->userId = $userId;
+        $this->userid = $userId;
     }
 
     public function getUserId(): int
     {
-        return $this->userId;
+        return $this->userid;
     }
 
     public function setCreatedAt(\DateTime $createdAt): void
@@ -130,5 +138,36 @@ class Post extends DB
     }
 
 
+    public function setViews(int $views): void
+    {
+        $this->views = $views;
+    }
+
+    public function getViews(): int
+    {
+        return $this->views;
+    }
+
+    public function setLikes(int $likes): void
+    {
+        $this->likes = $likes;
+    }
+
+    public function getLikes(): int
+    {
+        return $this->likes;
+    }
+
+        public function save()
+        {
+            if ($this->views === 0) {
+                $this->views = 0;  
+
+            if ($this->likes === 0) {
+                $this->likes = 0; 
+            }
+            parent::save();
+        }
  
-}
+        }
+    }

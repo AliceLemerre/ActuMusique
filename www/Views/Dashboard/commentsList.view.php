@@ -1,2 +1,2 @@
 <?php
-$this->includeComponent("CommentsList", []);
+$this->includeComponent("CommentsList", ["comments" => $comments]);

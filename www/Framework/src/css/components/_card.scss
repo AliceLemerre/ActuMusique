@@ -69,6 +69,11 @@
     }
     }
 
+    &-form-section{
+        margin: 0 auto;
+    }
+
+
     &-content{
         display: flex;
     }
@@ -91,6 +96,8 @@
         font-weight: 400;
         margin: rem(10) 0;
     }
+
+  
 
 }
 
@@ -136,11 +143,9 @@
            flex-direction: column;
     }
 
-    &-artiste-biogaphie-content{
-        display: flex;
-    }
 
   
+
 /*
      &::after{
             content: '';

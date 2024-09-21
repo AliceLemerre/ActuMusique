@@ -1,2 +1,2 @@
 <?php
-$this->includeComponent("dashboard", []);
+$this->includeComponent("dashboard", []);?>

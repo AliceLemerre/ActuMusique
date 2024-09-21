@@ -38,21 +38,33 @@ class DB
     {
         $data = $this->getDataObject();
 
-        if( empty($this->getId())){
-            $sql = "INSERT INTO " . $this->table . "(" . implode(",", array_keys($data)) . ") 
-            VALUES (:" . implode(",:", array_keys($data)) . ")";
-        }else{
-            $sql = "UPDATE " . $this->table . " SET ";
-            foreach ($data as $column => $value){
-                $sql.= $column. "=:".$column. ",";
-            }
-            $sql = substr($sql, 0, -1);
-            $sql.= " WHERE id = ".$this->getId();
+        if (isset($data['id']) && ($data['id'] === 0 || $data['id'] === null)) {
+            unset($data['id']);
         }
-
-
+    
+        if (empty($this->getId())) {
+            // Insert new record
+            $sql = "INSERT INTO " . $this->table . "(" . implode(",", array_keys($data)) . ") 
+                    VALUES (:" . implode(",:", array_keys($data)) . ")";
+        } else {
+            // Update existing record
+            $sql = "UPDATE " . $this->table . " SET ";
+            foreach ($data as $column => $value) {
+                if ($column !== 'id') {  // Skip 'id' in the SET clause
+                    $sql .= $column . "=:" . $column . ",";
+                }
+            }
+            $sql = rtrim($sql, ',');
+            $sql .= " WHERE id = :id";
+        }
+    
         $queryPrepared = $this->pdo->prepare($sql);
         $queryPrepared->execute($data);
+    
+        // If it was an insert, set the new ID
+        if (empty($this->getId())) {
+            $this->setId($this->pdo->lastInsertId());
+        }
     }
 
     public function isAdmin(string $email): bool
@@ -128,6 +140,14 @@ class DB
         return $queryPrepared->fetchAll();
     }
 
+    public function count(): int
+    {
+        $sql = "SELECT COUNT(*) FROM {$this->table}";
+        $queryPrepared = $this->pdo->prepare($sql);
+        $queryPrepared->execute();
+
+        return $queryPrepared->fetchColumn();
+    }
     //getAll
 
     //getOneById

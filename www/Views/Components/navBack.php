@@ -6,12 +6,6 @@
             </a></li>
         <li class="navbar-li navbar-li-back"><a href="/"><button class="button button-sm">front</button></a></li>
         <li class="navbar-li navbar-li-back">
-            <button class="button button-orange button-switch button-round">
-                <img src="Framework/assets/images/sun-icon.svg" class="sun" alt="light mode">
-                <img src="Framework/assets/images/moon-icon.svg" class="moon" alt="dark mode">
-            </button>
-        </li>
-        <li class="navbar-li navbar-li-back">
             <button class="navbar-burger navbar-burger-back" data-target="#content"><span></span></button>
         </li>
     </ul>

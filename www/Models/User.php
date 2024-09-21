@@ -2,6 +2,7 @@
 namespace App\Models;
 
 use App\Core\DB;
+use App\Core\Verificator;
 
 class User extends DB
 {
@@ -16,6 +17,14 @@ class User extends DB
     protected \DateTime $createdAt;
     protected int $isdeleted = 0;
 
+
+    public function isFirstUser(): bool
+    {
+        $sql = "SELECT COUNT(*) FROM " . $this->table;
+        $stmt = $this->pdo->query($sql);
+        $count = $stmt->fetchColumn();
+        return $count == 0;
+    }
 
 
     public function getId(): int

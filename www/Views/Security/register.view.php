@@ -1,5 +1,5 @@
 
-<section class="card" >
+<section class="card card-form-section" >
 
     <header class="card-header">
         <div>  <h1>Inscription</h1></div>

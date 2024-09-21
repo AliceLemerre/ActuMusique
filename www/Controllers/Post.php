@@ -8,14 +8,13 @@ use App\Core\Verificator;
 use App\Models\Post as PostModel;
 use App\Models\User as UserModel;
 use App\Controllers\Security;
+use App\Core\DB;
 
 class Post extends Security
 {
     public function createPost(): void
     {
         $security = new Security();
-        // For now, we'll assume the user is logged in and has a valid session
-        // In the future, uncomment these lines for proper authentication
         // $isAdmin = $security->checkAuthentification('/');
         // if ($isAdmin == "admin") {
 
@@ -75,32 +74,68 @@ class Post extends Security
                         }
                     }
                     
-                    // If no errors, save to database
                     if (empty($errors)) {
                         try {
                             $post->save();
-                            // Redirect on success
-                            header("Location: /posts");
+                            header("Location: /");
                             exit();
                         } catch (\Exception $e) {
-                            $errors[] = "Failed to save the post: " . $e->getMessage();
+                            $errors[] = "échec de récupération du post: " . $e->getMessage();
                         }
                     }
                 }
             }
         }
         
-        // If we reach here, either it's a GET request or there were errors
         $myView = new View("Post/createpost", "front");
         $myView->assign("createPost", $configPost);
         $myView->assign("errorsForm", $errors);
         
-        // Uncomment this when ready to implement authentication
         // } else {
         //     header('location:/login');
         //     exit();
         // }
     }
 
-    // ... (rest of the class remains the same)
-}
+    public function listPosts(): void
+    {
+      //  $security = new Security();
+     //   $isAdmin = $security->checkAuthentification('/');
+      //  if ($isSuperAdmin == "superAdmin") {
+
+            $postModel = new PostModel;
+            $posts = $postModel->getAllData();
+
+            $myView = new View("Dashboard/dashboard-posts", "back");
+            $myView->assign("posts", $posts);
+
+            
+       // } else {
+        //    header('location:/login');
+        //    exit();
+      //  }
+    }
+
+    public function deletePosts()
+    {
+        $security = new Security();
+        $isAdmin = $security->checkAuthentification('/');
+        if ($isSuperAdmin == "superAdmin") {
+
+            if (isset($_GET['id'])) {
+                $idToDelete = $_GET['id'];
+
+                $projectModel = new PostModel();
+                $projectModel->delete($idToDelete);
+
+                header('Location: /projectList');
+                exit;
+            } else {
+                echo "ID du projectaire non spécifié";
+                exit;
+            }
+        } else {
+            header('location:/login');
+            exit();
+        }
+    }}

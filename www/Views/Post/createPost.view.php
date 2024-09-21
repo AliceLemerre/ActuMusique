@@ -1,5 +1,5 @@
 
-<section class="card" >
+<section class="card card-form-section" >
 
     <header class="card-header">
         <div>  <h1>Publier un nouveau post</h1></div>
@@ -10,3 +10,5 @@
     ?>
 
 </section>
+
+

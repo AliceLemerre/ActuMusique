@@ -9,7 +9,6 @@ class PostInsert
         return [
             "config" => [
                 "method" => "POST",
-                "title" => "Rédiger un nouveau post",
                 "action" => "post",
                 "submit" => "Publier le post",
                 "class" => "form"
@@ -20,6 +19,7 @@ class PostInsert
                     "name" => "post-category",
                     "type" => "select",
                     "class" => "form-input",
+                    "label" => "Catégorie de post",
                     "placeholder" => "Catégorie de post",
                     "required" => true,
                     "error" => "Cette catégorie de post n'existe pas",
@@ -58,7 +58,7 @@ class PostInsert
                     "content" => "tinymce.init({
                         selector: 'textarea',
                         plugins: 'tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
-                        toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+                        toolbar: 'undo redo revisionhistory | code | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
                         tinycomments_mode: 'embedded',
                         tinycomments_author: 'Author name',
                         mergetags_list: [
@@ -105,14 +105,34 @@ class PostInsert
                     "error" => "La date est requise pour un événement",
                     "data-show-for" => "event"
                 ],
-                "userID" => [
+                "userId" => [
                     "html" => "input",
                     "name" => "userId",
                     "type" => "hidden",
-                    "value" => $_SESSION['userID'] ?? '',
+                    "value" => $_SESSION['userId'] ?? '',
                     "required" => true,
                 ],
             ]
         ];
     }
 }
+?>
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+      const postTypeSelect = document.querySelector('select[name="post-type"]');
+      const eventFields = document.querySelectorAll('.event-field');
+
+      function toggleEventFields() {
+          const isEvent = postTypeSelect.value === 'Évènement';
+          eventFields.forEach(field => {
+              field.style.display = isEvent ? 'block' : 'none';
+              field.required = isEvent;
+          });
+      }
+
+      postTypeSelect.addEventListener('change', toggleEventFields);
+      toggleEventFields(); 
+  });
+</script>

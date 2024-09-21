@@ -17,20 +17,24 @@
                 <?php foreach ($posts as $post) : ?>
                 <tr class="card-back-table-body-row">
                     <td class="card-back-table-body-row-data">
-                        <?php echo $post->getPostTitle(); ?>
-                        <ul class="card-back-table-body-row-data-list text-small">
-                            <li><a href="">modifier les droits</a></li>
-                            <li><a href="">supprimer le compte</a></li>
-                        </ul>
+                        <?= $post['title'] ?>
+                        <form action="/viewPost" method="GET">
+                            <input type="hidden" name="id" value="<?= $post['id'] ?>">
+                            <button type="submit" class="button">Voir le post</button>
+                        </form>
+                        <form action="/deletePost" method="GET">
+                            <input type="hidden" name="id" value="<?= $post['id'] ?>">
+                            <button type="submit" class="button">supprimer</button>
+                        </form>
                     </td>
                     <td class="card-back-table-body-row-data">
-                        <?php echo $post->getAuthor(); ?>
+                        <?= $post['username'] ?>
                     </td>
                     <td class="card-back-table-body-row-data">
-                        <?php echo $post->getCreationDate(); ?>
+                        <?= $post['created_at'] ?>
                     </td>
                     <td class="card-back-table-body-row-data">
-                        <?php echo $post->getPostType(); ?>
+                        <?= $post['category'] ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>    
@@ -39,35 +43,3 @@
         </table>
 </div>
 
-
-<?php
-$pages = $this->data['pages'];
-?>
-<section style="display: flex; justify-content: space-between; width: 100%; margin: auto;">
-    <article class="card card-menu" style="width:80%">
-    <h1>Mes pages</h1>
-        <?php foreach ($pages as $page): ?>
-            <h3 class="under-title">
-                <?= $page['title'] ?>
-            </h3>
-            <ul class="card-list">
-                <li class="card-list-item">
-                    <p>Créée le :
-                        <?= $page['created_at'] ?>
-                    </p>
-                    <div class="card-list-item-buttons">
-                        <form action="/viewPage" method="GET">
-                            <input type="hidden" name="id" value="<?= $page['id'] ?>">
-                            <button type="submit" class="button button-sm button-light-blue">Voir la page</button>
-                        </form>
-                        <form action="/deletePage" method="GET">
-                            <input type="hidden" name="id" value="<?= $page['id'] ?>">
-                            <button type="submit" class="button button-sm button-light-blue">Delete</button>
-                        </form>
-                    </div>
-                </li>
-            </ul>
-        <?php endforeach; ?>
-    </article>
-
-</section>

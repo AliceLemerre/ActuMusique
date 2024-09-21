@@ -1,8 +1,8 @@
 <header>
     <nav class="nav-front">
         <div class="nav-front-top">
-            <a class="logo" href="/"><img src="Framework/assets/images/Actumusique.png" alt="ActuMusique"></a>
-            <a class="navbar-li navbar-li-back" href="/dashboard"><button class="button button-sm">dashboard</button></a>
+            <a class="logo nav-front-logo" href="/"><img src="Framework/assets/images/Actumusique.png" alt="ActuMusique"></a>
+            <a class="navbar-li navbar-li-back" href="/dashboard"><button class="button button-sm nav-front-dashboard">dashboard</button></a>
 
             <div> 
                 <button class="navbar-burger" data-target="#content"><span></span>
@@ -12,11 +12,15 @@
 
         <div class="toggle-content" id="content">
         <ul class="nav-front-menu">
-            <li> <a href="/">accueil</a></li>
-            <li><a href="/events">évènements</a></li>
-            <li><a href="/articles">articles</a></li>
-            <li><a href="/login">connexion</a></li>
-            <li class="button button-lg button-primary button-register"><a href="/register">inscription</a></li>
+            <li class="a"> <a href="/">accueil</a></li>
+            <li class="a"><a href="/events">évènements</a></li>
+            <li class="a"><a href="/articles">articles</a></li>
+            <?php if (isset($_SESSION['userID'])): ?>
+            <li><a href="/logout">Déconnexion</a></li>
+        <?php else: ?>
+            <li><a href="/login">Connexion</a></li>
+            <li><a href="/register">Inscription</a></li>
+        <?php endif; ?>
         </ul>
         </div>
        

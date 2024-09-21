@@ -115,22 +115,22 @@ font-family: $font1;
     }
 
     //VARIABLES COULEURS
-    --color-1: var(--light-blue);
-    --color-2: var(--blue);
-    --color-3: var(--light-blue);
+    --color-1: var(--orange);
+    --color-2: var(--pink);
+    --color-3: var(--yellow);
     --color-4: var(--black);
     --color-5: var(--beige);
-    --color-6: var(--dark);
-    --color-7: var(--light);
+    --color-6: var(--white);
+    --color-7: var(--light-beige);
 
 
     --color-1-theme-2: var(--pink);
     --color-2-theme-2: var(--yellow);
-    --color-3-theme-2: var(--red);
-    --color-4-theme-2: var(--black);
-    --color-5-theme-2: var(--white);
-    --color-6-theme-2: var(--dark);
-    --color-7-theme-2: var(--light);
+    --color-3-theme-2: var(--orange);
+    --color-4-theme-2: var(--white);
+    --color-5-theme-2: var(--dark);
+    --color-6-theme-2: var(--black);
+    --color-7-theme-2: var(--light-dark);
 
 
     &-radio-color-swatch{

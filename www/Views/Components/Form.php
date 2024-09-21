@@ -1,31 +1,66 @@
-    <form method="<?= $config["config"]["method"] ?? "GET" ?>"
+<form style="padding: 15px;" method="<?= $config["config"]["method"] ?? "POST" ?>"
         action="<?= $config["config"]["action"] ?? "" ?>" class="<?= $config["config"]["class"] ?? "" ?>"
-        id="<?= $config["config"]["id"] ?? "" ?>">
+        id="<?= $config["config"]["id"] ?? "" ?>" enctype="multipart/form-data">
+    
+    <?php if (isset($config["config"]["title"])): ?>
+        <h2><?= $config["config"]["title"] ?></h2>
+    <?php endif; ?>
 
-        <?php if (!empty($data)): ?>
-            <div style="background-color: red">
-                <?php foreach ($data as $error): ?>
-                    <li>
-                        <?= $error ?>
-                    </li>
+    <?php if (!empty($data)): ?>
+        <div style="background-color: IndianRed; padding: 8px; list-style: none;">
+            <?php foreach ($data as $error): ?>
+                <li><?= $error ?></li>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php foreach ($config["input"] as $name => $configInput): ?>
+        <?php
+        $html = $configInput["html"] ?? "input";
+        $attributes = "";
+        foreach ($configInput as $attr => $value) {
+            if (!in_array($attr, ["html", "content", "options", "error"]) && !is_array($value)) {
+                $attributes .= " $attr=\"$value\"";
+            }
+        }
+        ?>
+
+        <?php if ($html === "select"): ?>
+            <select style="padding: 8px; border: 1px solid var(--black);margin: 10px; width:75%; backgeound-color: var(--white)" <?= $attributes ?>>
+                <?php foreach ($configInput["options"] as $option): ?>
+                    <option value="<?= $option["value"] ?>"><?= $option["label"] ?></option>
                 <?php endforeach; ?>
-            </div>
+            </select><br>
+        <?php elseif ($html === "textarea"): ?>
+            <textarea style="padding: 8px; border: 1px solid var(--black);margin: 10px; width:90%;min-height: 8rem;" <?= $attributes ?>></textarea><br>
+        <?php elseif ($html === "input"): ?>
+            <input style="padding: 8px; border: 1px solid var(--black);margin: 10px; width:75%;" <?= $attributes ?>><br>
         <?php endif; ?>
 
-        <?php foreach ($config["input"] as $name => $configInput): ?>
+        <?php if (isset($configInput["content"])): ?>
+            <script><?= $configInput["content"] ?></script>
+        <?php endif; ?>
+    <?php endforeach; ?>
 
-            <?php if (!isset($configInput['content'])): ?>
-                <input name="<?= $name ?>" type="<?= $configInput["type"] ?? "text" ?>" id="<?= $configInput["id"] ?? "" ?>"
-                    class="<?= $configInput["class"] ?? "" ?>" placeholder="<?= $configInput["placeholder"] ?? "" ?>"
-                    value="<?= $configInput["value"] ?? "" ?>" <?= (!empty($configInput["required"])) ? "required" : "" ?>
-                    <?= (!empty($configInput["hidden"])) ? "hidden" : "" ?>><br>
-            <?php else:
-                echo "<script>" . $configInput['content'] . "</script>";
-                echo "<textarea style='width: 70%' name=" . $configInput['name'] . "></textarea>";
-                ?>
-            <?php endif; ?>
-        <?php endforeach; ?>
-        <input type="submit" value="<?= $config["config"]["submit"] ?? "Envoyer" ?>"
-            class="<?= $config["button"]["class"] ?? "" ?>">
-    </form>
+    <input type="submit" class="button" value="<?= $config["config"]["submit"] ?? "Envoyer" ?>">
+</form>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const postTypeSelect = document.querySelector('select[name="post-category"]');
+    const eventFields = document.querySelectorAll('[data-show-for="event"]');
+
+    function toggleEventFields() {
+        const isEvent = postTypeSelect.value === 'Évènement';
+        eventFields.forEach(field => {
+            field.style.display = isEvent ? 'block' : 'none';
+            field.required = isEvent;
+        });
+    }
+
+    if (postTypeSelect) {
+        postTypeSelect.addEventListener('change', toggleEventFields);
+        toggleEventFields(); 
+    }
+});
+</script>

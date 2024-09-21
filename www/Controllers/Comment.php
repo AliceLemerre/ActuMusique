@@ -132,7 +132,7 @@ class Comment extends Security
             $commentModel = new CommentModel;
             $comments = $commentModel->getCommentNotValidated();
 
-            $myView = new View("Comment/listComments", "back");
+            $myView = new View("Comment/CommentsList", "back");
             $myView->assign("comments", $comments);
         } else {
             header('location:/login');

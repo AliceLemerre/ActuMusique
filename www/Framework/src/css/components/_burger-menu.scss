@@ -1,4 +1,82 @@
-/* ... (previous styles remain the same) ... */
+.navbar-burger {
+    display: block;
+    font-size: 0;
+    width: rem(20);
+    aspect-ratio: 1/1;
+    line-height: 0;
+    position: relative;
+    background-color: transparent;
+    border: none;
+    padding-right: rem(20);
+}
+
+.navbar-burger-front {
+    margin-bottom: rem(20);
+}
+
+.navbar-burger span,
+.navbar-burger::before,
+.navbar-burger::after {
+    content: "";
+    height: rem(3);
+    width: 100%;
+    background-color: var(--black);
+    position: absolute;
+    left: 0;
+    transition: all 0.3s;
+    transform-origin: center;
+    border-radius: rem(100);
+}
+
+.navbar-burger-back span,
+.navbar-burger-back::before,
+.navbar-burger-back::after {
+    background-color: var(--white);    
+}
+
+.navbar-burger::before {
+    top: 0;
+}
+
+.navbar-burger::after {
+    bottom: 0;
+}
+
+.navbar-burger span {
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.toggled span {
+    transform: translateY(-50%) scaleX(0);
+}
+
+.toggled::before {
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.toggled::after {
+    bottom: 50%;
+    transform: translateY(50%) rotate(-45deg);
+}
+
+.toggle-content {
+    width: 100%;
+    background-color: inherit;
+    flex-direction: column;
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height 0.5s;
+}
+
+.toggle-content-front {
+    align-items: flex-start;
+}
+
+.nav-front {
+    border-bottom: rem(1) solid var(--black);
+}
 
 .nav-front-top {
     border-bottom: rem(1) solid var(--black);
@@ -6,41 +84,123 @@
     justify-content: space-between;
     align-items: center;
     padding: rem(15) rem(20);
-    min-height: rem(80); /* Increased minimum height */
+    min-height: rem(80);
 }
 
 .nav-front-logo,
 .nav-front-dashboard {
-    flex-shrink: 0; /* Prevent logo and dashboard button from shrinking */
+    flex-shrink: 0;
 }
 
 .nav-front-logo img {
-    max-height: rem(50); /* Adjust based on your logo size */
+    max-height: rem(50);
     width: auto;
 }
 
 .nav-front-dashboard {
-    padding: rem(8) rem(15);
-    white-space: nowrap; /* Prevent button text from wrapping */
+    white-space: nowrap;
 }
 
-/* ... (rest of the styles remain the same) ... */
+.nav-front ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--beige);
+}
+
+.nav-front li {
+    text-align: center;
+    padding: rem(20) rem(0);
+}
+
+.nav-front a {
+    color: var(--black);
+    text-decoration: none;
+    padding: rem(8) rem(15);
+    border-radius: rem(60);
+    flex-grow: 0;
+}
+
+.nav-front-menu {
+    margin-bottom: rem(20);
+}
+
+.nav-front .button-register {
+    margin: 0 auto;
+    padding: rem(10) rem(20);
+}
+
+.nav-front-desktop {
+    display: none;
+}
 
 @media screen and (min-width: 768px) {
-    /* ... (previous desktop styles remain the same) ... */
+    .navbar-burger {
+        display: none;
+    }
+
+    .side-nav-back-mobile,
+    .toggle-content {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: rem(30);
+        width: 100%;
+        background-color: inherit;
+        overflow: visible;
+        max-height: none;
+        transition: none;
+    }
 
     .nav-front-top {
+        border-bottom: none;
         padding: rem(20) rem(30);
-        min-height: rem(100); /* Slightly larger on desktop if needed */
+        min-height: rem(100);
+        justify-content: center;
+        gap: rem(40);
     }
 
     .nav-front-logo img {
-        max-height: rem(60); /* Slightly larger logo on desktop if needed */
+        max-height: rem(60);
     }
 
-    .nav-front-dashboard {
+
+    .nav-front ul {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
+        gap: rem(38);
+    }
+
+    .nav-front li {
+        padding: rem(10) 0;
+    }
+
+    .nav-front .a a:hover,
+    .nav-front .a a:active{
+        background-color: var(--orange);
+        border: none;
+        transition: all var(--transition-duration);
+    }
+
+    .button a:hover,
+    .button a:active{
+        background-color: transparent !important;
+        border: none;
+        transition: all var(--transition-duration);
+    }
+
+    .nav-front .button-register {
+        margin: 0;
+    }
+
+    .nav-front-desktop {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         padding: rem(10) rem(20);
     }
-
-    /* ... (rest of the desktop styles remain the same) ... */
 }

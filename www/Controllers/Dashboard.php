@@ -17,7 +17,7 @@ class Dashboard
 
     public function posts(): void
     {
-        $myView = new View("Dashboard/articlesList", "back");
+        $myView = new View("Dashboard/dashboard-posts", "back");
     }
 
     public function comments(): void

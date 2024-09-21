@@ -26,7 +26,7 @@ CREATE TABLE esgi_post(
         city varchar(30) NOT NULL,
         content TEXT NOT NULL,
         image varchar(255) NOT NULL,
-        user_id int NOT NULL,
+        userid int NOT NULL,
         views int NOT NULL,
         likes int NOT NULL,
         created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -37,23 +37,23 @@ CREATE TABLE esgi_post(
 
 CREATE TABLE esgi_comment(
     id SERIAL PRIMARY KEY,
-    post_id INT NOT NULL,
-    user_id INT NOT NULL,
+    postid INT NOT NULL,
+    userid INT NOT NULL,
     content TEXT NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NULL,
     validity INT NOT NULL DEFAULT 0,
-    CONSTRAINT postid FOREIGN KEY(post_id) REFERENCES esgi_post(id) ON DELETE CASCADE,
-    CONSTRAINT userid FOREIGN KEY(user_id) REFERENCES esgi_user(id) ON DELETE CASCADE
+    CONSTRAINT postid FOREIGN KEY(postid) REFERENCES esgi_post(id) ON DELETE CASCADE,
+    CONSTRAINT userid FOREIGN KEY(userid) REFERENCES esgi_user(id) ON DELETE CASCADE
 );
 
 
 CREATE TABLE esgi_media (
     id SERIAL PRIMARY KEY,
     url VARCHAR(255) NOT NULL,
-    user_id INT,
-    post_id INT,
-    CONSTRAINT fk_media_user FOREIGN KEY (user_id) REFERENCES esgi_user(id) ON DELETE CASCADE,
-    CONSTRAINT fk_media_post FOREIGN KEY (post_id) REFERENCES esgi_post(id) ON DELETE CASCADE
+    userid INT,
+    postid INT,
+    CONSTRAINT fk_media_user FOREIGN KEY (userid) REFERENCES esgi_user(id) ON DELETE CASCADE,
+    CONSTRAINT fk_media_post FOREIGN KEY (postid) REFERENCES esgi_post(id) ON DELETE CASCADE
 );
 

@@ -7,10 +7,10 @@ use App\Models\User;
 use App\Forms\UserInsert;
 use App\Forms\UserLogin;
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class Security
 {
-
     public function checkAuthentification(string $return): string
     {
         $security = new Security();
@@ -57,48 +57,90 @@ class Security
         return true;
     }
 
-
     public function login(): void
     {
         $formLogin = new UserLogin();
         $configLogin = $formLogin->getConfig();
         $errors = [];
 
-
+        if ($_SERVER["REQUEST_METHOD"] == $configLogin["config"]["method"]) {
+            $verificator = new Verificator();
+            if ($verificator->checkForm($configLogin, $_REQUEST, $errors)) {
+                $user = new User();
+                $userFromDb = $user->getOneBy(["email" => $_REQUEST['email']], "object");
+                if ($userFromDb && password_verify($_REQUEST['password'], $userFromDb->getPassword())) {
+                    $_SESSION['userID'] = $userFromDb->getId();
+                    $_SESSION['email'] = $userFromDb->getEmail();
+                    $_SESSION['username'] = $userFromDb->getUsername();
+                    $_SESSION['role'] = $userFromDb->getRole();
+                    $_SESSION['message'] = "You have been successfully logged in.";
+                    header("Location: /");
+                    exit();
+                } else {
+                    echo "Identifiant ou mot de passe incorrect";
+                    exit;
+                }
+            }
+        }
+     
 
         $myView = new View("Security/login", "front");
         $myView->assign("configFormLogin", $configLogin);
         $myView->assign("errorsForm", $errors); 
     }
+
     public function logout(): void
     {
-        $myView = new View("Security/logout", "front");
+        session_destroy();
+        session_start();
+        $_SESSION['message'] = "You have been successfully logged out.";
+        header("Location: /");
+        exit();
     }
+
     public function register(): void
     {
         $form = new UserInsert();
         $config = $form->getConfig();
-
         $errors = [];
 
-        // Est ce que le formulaire a été soumis
-        if( $_SERVER["REQUEST_METHOD"] == $config["config"]["method"] )
-        {
-            // Ensuite est-ce que les données sont OK
+        if ($_SERVER["REQUEST_METHOD"] == $config["config"]["method"]) {
             $verificator = new Verificator();
-            if($verificator->checkForm($config, $_REQUEST, $errors)){
-                $user = new \App\Models\User();
+            if ($verificator->checkForm($config, $_REQUEST, $errors)) {
+                $user = new User();
                 $user->setUsername($_REQUEST['username']);
                 $user->setEmail($_REQUEST['email']);
-                $user->setPassword($_REQUEST['password']);
+                $user->setPassword(password_hash($_REQUEST['password'], PASSWORD_DEFAULT));
+                $user->setEmailConfirmation(false);
+                $user->setResetPassword(false);
+                $verificationCode = $this->generateVerificationCode();
+                $user->setVerificationCode($verificationCode);
+                
+                if ($this->firstUserIsAdmin()) {
+                    $user->setRole(0); // Super admin
+                } else {
+                    $user->setRole(2); //  user
+                }
+
                 $user->save();
+
+                $_SESSION['userID'] = $user->getId();
+                $_SESSION['email'] = $user->getEmail();
+                $_SESSION['username'] = $user->getUsername();
+                $_SESSION['role'] = $user->getRole();
+
+                $_SESSION['message'] = "Votre compte a été créé avec succès.";
+                
+                $this->sendVerificationEmail($user, $verificationCode);
+
+                header("Location: /dashboard");
+                exit();
             }
         }
 
         $myView = new View("Security/register", "front");
         $myView->assign("configForm", $config);
         $myView->assign("errorsForm", $errors);
-
     }
 
     public function generateVerificationCode(): string
@@ -125,7 +167,6 @@ class Security
         }
     }
 
-
     private function sendVerificationEmail(User $user, string $verificationCode): bool
     {
         $mail = new PHPMailer(true);
@@ -135,16 +176,16 @@ class Security
             $mail->Host = 'smtp.gmail.com';
             $mail->Port = 587;
             $mail->SMTPAuth = true;
-            $mail->Username = 'pierregueitdessus@gmail.com';
-            $mail->Password = 'osgg kuxx dvli pezc';
+            $mail->Username = 'actumusique09@gmail.com';
+            $mail->Password = '@ctumusique04';
             $mail->SMTPSecure = 'tls';
-            $mail->setFrom('pierregueitdessus@gmail.com', 'OpenCMF');
-            $mail->addAddress($user->getEmail(), $user->getFirstname());
+            $mail->setFrom('actumusique09@gmail.com', 'ActuMusique');
+            $mail->addAddress($user->getEmail(), $user->getUsername());
 
             $mail->Subject = "Vérification de votre compte";
-            $mail->Body = "Bonjour " . $user->getFirstname() . ",\n\n";
-            $mail->Body .= "Merci de cliquer sur le lien suivant pour vérifier votre compte : ";
-            $mail->Body .= "http://5.250.178.213/verify?code=" . $verificationCode . "&email=" . $user->getEmail();
+            $mail->Body = "Bonjour " . $user->getUsername() . ",\n\n";
+            $mail->Body .= "Merci de cliquer sur le lien pour vérifier votre compte : ";
+            $mail->Body .= "http://128.199.45.92/verify?code=" . $verificationCode . "&email=" . $user->getEmail();
 
             $mail->send();
             return true;
@@ -163,16 +204,16 @@ class Security
             $mail->Host = 'smtp.gmail.com';
             $mail->Port = 587;
             $mail->SMTPAuth = true;
-            $mail->Username = 'pierregueitdessus@gmail.com';
-            $mail->Password = 'osgg kuxx dvli pezc';
+            $mail->Username = 'actumusique09@gmail.com';
+            $mail->Password = '@ctumusique04';
             $mail->SMTPSecure = 'tls';
-            $mail->setFrom('pierregueitdessus@gmail.com', 'OpenCMF');
-            $mail->addAddress($user->getEmail(), $user->getFirstname());
+            $mail->setFrom('lemerre.alice@gmail.com', 'ActuMusique');
+            $mail->addAddress($user->getEmail(), $user->getUsername());
 
             $mail->Subject = "Changement de mot de passe";
-            $mail->Body = "Bonjour " . $user->getFirstname() . ",\n\n";
-            $mail->Body .= "Si vous avez demander un changement de mot de passe cliquez sur ce lien : ";
-            $mail->Body .= "http://5.250.178.213/changepassword?code=" . $verificationCode . "&email=" . $user->getEmail();
+            $mail->Body = "Bonjour " . $user->getUsername() . ",\n\n";
+            $mail->Body .= "Si vous avez demandé un changement de mot de passe cliquez sur ce lien : ";
+            $mail->Body .= "http://128.199.45.92/changepassword?code=" . $verificationCode . "&email=" . $user->getEmail();
 
             $mail->send();
             return true;
@@ -193,11 +234,13 @@ class Security
             session_start();
             $_SESSION['userID'] = $userGetByEmail->getId();
             $_SESSION['email'] = $userGetByEmail->getEmail();
-            header("Location: /portfolio");
+            $_SESSION['message'] = "Your email has been verified successfully.";
+            header("Location: /dashboard");
+            exit();
+        } else {
+            $_SESSION['message'] = "Invalid verification link.";
+            header("Location: /");
             exit();
         }
     }
-
-
-
 }
