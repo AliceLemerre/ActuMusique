@@ -1,5 +1,5 @@
 
-<button class="button"><a href="/createpost">écrire un post</a></button>
+<button class="button"><a href="/create-post">écrire un post</a></button>
 
 <section class="main-flex">
 <?php
