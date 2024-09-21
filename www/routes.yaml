@@ -47,7 +47,7 @@
   controller: Post
   action: viewpage
 
-/createpost:
+/create-post:
   controller: Post
   action: createpost
 
